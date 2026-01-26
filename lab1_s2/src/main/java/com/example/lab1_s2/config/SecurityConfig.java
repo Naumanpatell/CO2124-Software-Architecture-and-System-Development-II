@@ -24,8 +24,12 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
-                        .requestMatchers("/register", "/login","/error").permitAll()
+                        // RBAC rules
+                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/user", "/welcome").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated())
+
+                .exceptionHandling(e -> e.accessDeniedPage("/denied"))
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")

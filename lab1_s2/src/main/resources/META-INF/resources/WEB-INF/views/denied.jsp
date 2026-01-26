@@ -5,15 +5,17 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome Page</title>
+    <title>Access Denied</title>
 </head>
 <body>
 
-<h2>Welcome</h2>
-<p>You are logged in.</p>
-<form action="${pageContext.request.contextPath}/logout" method="post">
-    <button type="submit">Logout</button>
-</form>
+<h1>Access Denied (403)</h1>
+<p>You do not have permission to view this page.</p>
+<p>
+    <a href="${pageContext.request.contextPath}/welcome">Go to Welcome</a>
+    |
+    <a href="${pageContext.request.contextPath}/login">Login</a>
+</p>
 
 </body>
 </html>

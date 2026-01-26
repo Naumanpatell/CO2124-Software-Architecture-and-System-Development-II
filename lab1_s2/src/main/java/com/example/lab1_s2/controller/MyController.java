@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.security.core.Authentication;
 
 
 @Controller
@@ -35,6 +36,28 @@ public class MyController {
     public String welcome() {
         return "welcome";
     }
+
+    @GetMapping("/user")
+    public String userPage() {
+        return "user";
+    }
+
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "admin";
+    }
+
+    @GetMapping("/sucess-login")
+    public String successLogin(Authentication auth) {
+        boolean isAdmin = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE ADMIN"));
+        return isAdmin ? "redirect/admin" : "redirect/user";
+    }
+
+    @GetMapping("/denied")
+    public String denied() {
+        return "denied";
+    }
+
 
 
 
