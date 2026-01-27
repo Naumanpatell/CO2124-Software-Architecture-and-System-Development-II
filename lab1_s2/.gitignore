@@ -32,6 +32,11 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
+# Ignore keystore file
+src/main/resources/keys.jks
 
 ### VS Code ###
 .vscode/
+
+# Ignore environment file
+src/main/resources/.env
